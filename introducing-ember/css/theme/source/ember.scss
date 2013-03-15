@@ -1,0 +1,54 @@
+/**
+ * A ember theme for reveal.js presentations, similar
+ * to the default theme. The accent color is darkblue.
+ *
+ * This theme is Copyright (C) 2012 Owen Versteeg, https://github.com/StereotypicalApps. It is MIT licensed.
+ * reveal.js is Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Quicksand', sans-serif;
+$mainColor: #ccc;
+$headingFont: 'Quicksand', sans-serif;
+$headingColor: darken(rgb(224,73,46), 10%);
+$headingTextShadow: none;
+$headingTextTransform: none;
+$backgroundColor: #222;
+$linkColor: rgb(224,73,46);
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: rgba(0, 0, 0, 0.99);
+
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal .slides section .fragment.highlight-orange{
+	opacity: 1;
+
+	&.visible {
+		color: $linkColor
+	}
+}
+
+.reveal section img{
+	background-color: rgba(255,255,255,0.9);
+}
+
+#notes{
+	clear: both;
+}

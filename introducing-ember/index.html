@@ -1,6 +1,941 @@
-<html>
-<head></head>
-<body>
-	<h1>hello agian.</h1>
-</body>
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ember.js - An Introduction by Owain Williams</title>
+
+		<meta name="description" content="A presentation giving a high level introduction to Ember.js">
+		<meta name="author" content="Owain Williams">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/ember.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+<!----- Section ------>
+				<section>
+					<h1>Ember.js</h1>
+					<h3>An Introduction</h3>
+					<p>
+						<small>For <a href="http://twitter.com/ottawa_js">OttawaJS</a> & <a href="http://twitter.com/EmberOttawa">Ember Ottawa</a></small>
+					</p>
+
+					<aside class="notes">
+						<ul>
+							<li>I'll be giving you a brief tour to Ember</li>
+							<li>POLL: Who has heard of Ember?</li>
+						</ul>
+					</aside>
+				</section>
+
+<!----- Section ------>
+				<section>
+					<section>
+						<p>
+							<b>Owain Williams</b>
+						</p>
+					</section>
+					<section>
+						<p>Front-End Engineer @ <a href="http://toushay.com">Toushay</a></p>
+					</section>
+				</section>
+
+<!----- Section ------>
+				<section>
+					<section>
+						<h2>What is this Ember?</h2>
+						<aside class="notes">
+							Will concentrate on concepts - not a full API guide
+						</aside>
+					</section>
+					<section>
+						<p>A JavaScript MVC Framework</p>
+					</section>
+					<section>
+						<p>Yes...another one!</p>
+						<aside class="notes">
+							Most web developers using JavaScript regularly will know there has been lot of buzz around MVC frameworks over the past couple of years...
+
+							...But Why?
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Applications</h2>
+
+						<aside class="notes">
+							People have been building applications for a long time.
+						</aside>
+					</section>
+
+					<section>
+						<h3>How do you build your App?</h3>
+
+						<aside class="notes">
+							If we look at historically how developers did this....
+						</aside>
+					</section>
+
+					<section>
+						<h3>Windows used...</h3>
+						</br>
+						<p class="fragment fade-in">
+							.Net
+						</p>
+					</section>
+
+					<section>
+						<h3>Mac OS & iOS used...</h3>
+						</br>
+						<p class="fragment fade-in">
+							Cocoa
+						</p>
+					</section>
+
+					<section>
+						<h3>Python has...</h3>
+						</br>
+						<p class="fragment fade-in">
+							Django
+						</p>
+						<aside class="notes">
+							Web Apps aren't new, we've been doing it on the server for a while
+						</aside>
+					</section>
+
+					<section>
+						<h3>Ruby has...</h3>
+						</br>
+						<p class="fragment fade-in">
+							Rails
+						</p>
+					</section>
+
+					<section>
+						<h3>JavaScript has...</h3>
+						</br>
+						<p class="fragment fade-in">
+							jQuery...!?!?
+						</p>
+					</section>
+
+					<section>
+						<h1>0_o</h1>
+
+						<aside class="notes">
+							<ul>
+								<li>You can see the problem here</li>
+								<li>jQuery is great...for websites!</li>
+								<li>Up until recent years nobody took client side apps seriously</li>
+								<li>Who can blame them when you compare the tooling available</li>
+								<li>writing client side apps has been hard!</li>
+							<ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Client-Side MV*</h2>
+
+						<aside class="notes">
+							POLL: How many of you have used a client side MVC framework?
+						</aside>
+					</section>
+
+					<section>
+						<a href="http://todomvc.com">todomvc.com</a>
+
+						<aside class="notes">
+							Great collection of examples for nearly every MV* framework?
+						</aside>
+					</section>
+
+					<section>
+						<ul>
+							<li class="fragment highlight-orange">Backbone</li>
+							<li>Knockout</li>
+							<li class="fragment highlight-orange">Angular</li>
+							<li>Batman</li>
+							<li class="fragment highlight-orange">Ember</li>
+							<li>Spine</li>
+						</ul>
+
+						<aside class="notes">
+							POLL: who's used Backbone? Angular? Ember?</br>
+							Backbone:
+							<ul>
+								<li>I used to be a Backbone user</li>
+								<li>Lightweight - gives basic application structure</li>
+								<li>Flexible</li>
+								<li>Explicit - Need to write a line of code for everything that happens in your app</li>
+								<li>Gets more complicated very quickly.</li>
+								<ul><li>Memory management. Cleanup. listeners.</li>
+								<li>Nested Views</li></ul>
+							</ul>
+							<ul>
+								<li>Google Sponsored</li>
+								<li>For larger applications</li>
+								<li>Different design decisions to Ember:
+									<ul>
+										<li>HTML Based Templates</li>
+										<li>Inspect for property changes</li>
+										<li>Complex terminology</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>So, what is Ember?</h2>
+					</section>
+
+					<section>
+						<h4>A framework for creating</h4>
+						<h3><q>Ambitious Web Application</q></h3>
+
+						<aside class="notes">
+							<ul>
+								<li>Large application</li>
+								<li>Complex applications</li>
+								<li>Interactive applications</li>
+								<li>Team based development</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+						<blockquote>[Developers] need both sophisticated tools and the right vocabulary of concepts to help them communicate and collaborate</blockquote>
+
+						<aside class="notes">
+							SUMMARY: "Need Tools & Concepts To be able to create JS applications"
+						</aside>
+					</section>
+
+					<section>
+
+						<ul>
+							<li>Manage Complexity</li>
+							<li>Eliminate Boilerplate</li>
+							<li>Application Structure</li>
+							<li>Conventions</li>
+						</ul>
+
+						<aside class="notes">
+							I'll go through some quotes from the Ember team
+						</aside>
+					</section>
+
+					<section>
+						<blockquote>[Ember] aims to reduce the complexity created by the links between many moving pieces by clearly defining how communication occurs between parts of your application</blockquote>
+
+						<aside class="notes">
+							SUMMARY: "Defines where the concerns of your application should be"
+						</aside>
+					</section>
+
+
+					<section>
+						<blockquote>By eliminating trivial choices and making the answers conventional, you can focus on non-trivial problems.</blockquote>
+
+						<aside class="notes">
+							SUMMARY: "makes choices for you"
+							<ul>
+								<li>Opinionated</li>
+								<li>Makes you more productive - not wasting time on small decisions</li>
+								<li>using a smaller framework there is a lot of code that has nothing to do with your application</li>
+							</ul>
+						</aside>
+					</section>
+
+
+					<section>
+						<blockquote>[Developers] don't want to think about building abstractions at the same time as using these abstraction</blockquote>
+
+						<aside class="notes">
+							SUMMARY: "focus on your application"
+							<ul>
+								<li>focus on your application</li>
+								<li>when writing apps, Yehuda/Tom don't want to think about it either</li>
+							</ul>
+						</aside>
+					</section>
+
+
+					<section>
+						<h3>Conventions</h3>
+						<ul>
+							<li>Reduce code</li>
+							<li>Eliminate trivial choices</li>
+							<li>Increase Predictability
+								<ul>
+									<li>Important for teams</li>
+									<li>Quick ramp up</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<blockquote>If something is very difficult to do [in Ember], you're probably doing it wrong.</blockquote>
+						<small style="text-align:right;"><em> - Geoffrey Grosenbach (Peepcode)</em></small>
+						<aside class="notes">
+							Or changing a lot of defaults
+						</aside>
+					</section>
+
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Ember's Heritage</h2>
+					</section>
+					<section>
+						<h3>Ember's MVC !== Server MVC</h3>
+						<p class="fragment fade-in">It's closer to Cocoa's MVC</p>
+
+						<aside class="notes">
+							Rails developers may find they need to adjust their thinking for example
+						</aside>
+					</section>
+					<section>
+						<h3>Doesn't re-invent concepts</h3>
+						<div class="fragment fade-in">
+							<p>Ruby on Rails</p>
+							<p>Cocoa</p>
+							<p>Backbone</p>
+						</div>
+
+						<aside class="notes">
+							Like we've seen, people have solved these problems before
+						</aside>
+					</section>
+					<section>
+						<h3>Spun out from SproutCore</h3>
+
+						<aside class="notes">
+							<ul>
+								<li>Was going to be SproutCore 2.0</li>
+								<li>Spun off as it was essentially a re-write</li>
+								<li>Dropped some of the disliked features (aka UI)</li>
+								<li>Distance itself from the baggage that came with the name</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Who's behind Ember?</h2>
+					</section>
+
+					<section>
+						<h3>Open Source</h3>
+						<ul>
+							<li>Available on GitHub under MIT</li>
+							<li>Not a throwaway weekend project</li>
+							<li>Started by <a href="http://twitter.com/wycats">Yehuda Katz</a> & <a href="http://twitter.com/tomdale">Tom Dale</a></li>
+							<li>Experienced in Open Source</li>
+							<li>> 200 committers</li>
+							<li>8 core team members</li>
+						</ul>
+
+						<aside class="notes">
+							<ul>
+								<li>2 years in development</li>
+								<li>Yehuda Katz - Rails, jQuery, Handlebars</li>
+								<li>Tom Dale - SproutCore, Apple</li>
+								<li>Been growing in support</li>
+								<li>Lots of community involvement & buzz - Issues, SO, blogs, jobs</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Anatomy of Ember</h2>
+					</section>
+					<section>
+						<ul>
+							<li>Classes & Objects</li>
+							<li>Models</li>
+							<li>Views</li>
+							<li>Controllers</li>
+							<li>Templates</li>
+							<li>Router</li>
+							<li>Naming Conventions</li>
+							<li>Run-loop</li>
+						</ul>
+						<aside class="notes">
+							Won't cover all of these in detail
+						</aside>
+					</section>
+					<section>
+						<h3>Moduler</h3>
+						<ul>
+							<li>handlebars</li>
+							<li>jquery</li>
+							<li>ember-metal</li>
+							<li>ember-data</li>
+							<li>router.js</li>
+							<li>route-recognizer</li>
+							<li>rsvp.js</li>
+							<li>metamorph</li>
+							<li>etc...</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>Even though ember is a fairly large framework, it's also very modular</li>
+								<li>Check out the source - well documented & tested</li>
+								<li>Some good Computer Science concepts</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+			</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Classes & Objects</h2>
+					</section>
+					<section>
+						<h3>Classes Extend</h3>
+<pre><code class="javascript" contenteditable>App.Person = Ember.Object.extend({
+  firstName: null,
+  lastName: null
+});
+
+
+var bieber = App.Person.create({
+  firstName: "Justin",
+  lastName: "Bieber"
+});</code></pre>
+						<aside class="notes">
+							Provides simple classes & inheritance
+						</aside>
+					</section>
+
+					<section>
+						<h3>Mixins</h3>
+<pre><code class="javascript" contenteditable>App.Canadian = Ember.Mixin.extend({
+  says: function(something) {
+    alert(this.get("firstName") + " says: " + something + ", Eh!");
+  }
+});
+
+App.Person = Ember.Object.extend(App.Canadian, {
+  firstName: null,
+  lastName: null
+});
+
+var gretzky = App.Person.create({
+  firstName: "Wayne",
+  lastName: "Gretzky"
+});
+
+gretzky.say("I play hockey"); // alerts "Wayne says: I play hockey, Eh!"
+</code></pre>
+						<aside class="notes">
+							Flexibility & code reuse of Mixins
+						</aside>
+					</section>
+
+					<section>
+						<h3>Objects - get/set</h3>
+<pre><code class="javascript" contenteditable>App.Person = Ember.Object.extend({
+  firstName: null,
+  lastName: null,
+});
+
+var john = App.Person.create({
+  firstName: "John",
+  lastName: null
+});
+
+john.get("lastName"); // => null
+
+john.set("lastName", "Candy");
+
+john.get("lastName"); // => "Candy"
+</code></pre>
+						<aside class="notes">
+							Using get/set allows Ember to be very intelligent with performance & updating
+						</aside>
+					</section>
+
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Computed Properties</h2>
+					</section>
+					<section>
+						<q>A property that derives its value by executing a function</q>
+					</section>
+					<section>
+						<h3>Computed Property Example</h3>
+<pre><code class="javascript">App.Person = Ember.Object.extend({
+  firstName: null,
+  lastName: null,
+
+  fullName: function() {
+    return this.get("firstName") + ' ' + this.get("lastName");
+  }.property("firstName", "lastName")
+});
+
+var avril = App.Person.create({
+  firstName: "Avril",
+  lastName: "Lavigne"
+});
+
+avril.get("fullName") // "Avril Lavigne"</code></pre>
+						<aside class="notes">
+							<ul>
+								<li>only re-evaluates when the dependant properties change</li>
+								<li>propegate through system if dependant on CP</li>
+									<ul>
+										<li>Run-loop - updates once</li>
+										<li>Lazy computation</li>
+										<li>Cached</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Views & Templates</h2>
+					</section>
+
+					<section>
+						<h3>Templates</h3>
+						<ul>
+							<li>Use Handlebars.js to define your templates</li>
+							<li>Describes HTML output</li>
+							<li>Bindings aware</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Templates Example</h3>
+<pre><code class="xml">< div class="person-name" >
+	Hello, {{firstName}} {{lastName}}!
+< /div ></code></pre>
+						<aside class="notes">
+							Expressions take data from controllers, place them into HTML - automatically keeping them updated.
+						</aside>
+					</section>
+
+					<section>
+						<h3>View</h3>
+						<ul>
+							<li>Handles user interaction (clicks, events)</li>
+							<li>Adapts styling according to data</li>
+							<li>Useful for reusable components</li>
+							<li>Usually small & sometimes not needed</li>
+						</ul>
+						<aside class="notes">
+							 Translates primitive events (like clicks, taps, and swipes) into semantic events
+						</aside>
+					</section>
+					<section>
+						<h3>View Example</h3>
+<pre><code class="javascript">App.MooseView = Ember.View.extend({
+  templateName: 'moose',
+
+  classNameBindings: ['isAngry'],
+  isAngry: true,
+
+  click: function(evt) {
+    controller.hug(); // => "You hugged a moose!"
+  }
+});</code></pre>
+
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Bindings</h2>
+					</section>
+					<section>
+						<h3>Template Bindings</h3>
+<pre><code class="xml">< div class="person-name" >
+	Hello, <strong>{{firstName}} {{lastName}}</strong>!
+< /div ></code></pre>
+<br/>
+
+<pre><code class="javascript">App.ApplicationController = Ember.Controller.extend({
+  firstName: "Stephen",
+  lastName: "Harper"
+});</code></pre>
+<br/>
+<pre><code class="xml">< div class="person-name" >
+	Hello, <strong>Stephen Harper</strong>!
+< /div ></code></pre>
+						<aside class="notes">
+							<p>Common feature in modern MVC - Kockout, Angluar, etc</p>
+							<p>Not all implementations are equal</p>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Models & Data</h2>
+					</section>
+					<section>
+						<p>A model is an object that stores persistent state</p>
+						<aside class="notes">
+							<p>In essence a model can be just an Ember Object that takes advantage for Computed Properties, Binding, etc</p>
+						</aside>
+					</section>
+					<section>
+						<h3>Ember Data</h3>
+						<p>An official data persistence library</p>
+						<p>Goal of to make API communication & persistent state management easier</p>
+						<aside class="notes">
+							<ul>
+								<li>Handles you Ajax, model state, etc</li>
+								<li>Won't cover in great detail</li>
+								<li>More in a bit</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Controllers</h2>
+					</section><section>
+						<h3>Controllers in Ember</h3>
+						<ul>
+							<li>Deliver data to views & templates</li>
+							<li>Decorates model data with display logic</li>
+							<li>Can handle actions</li>
+							<li>Long lived</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Ember.Controller</h3>
+						<p>Proxies to its own properties</p>
+					</section>
+					<section>
+						<h3>Ember.ObjectController</h3>
+						<p>Proxies to its itself, and then to its <em>model's</em> properties</p>
+					</section>
+					<section>
+						<h3>Ember.ArrayController</h3>
+						<p>Proxies to its itself, and then to its <em>models</em> properties, which is an Array of models</p>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Quick Recap</h2>
+					</section>
+					<section>
+						<img src="http://emberjs.com/images/controller-guide/objects.png">
+						<aside class="notes">
+							<ul>
+								<li>Model holds your data</li>
+								<li>Controller handles the communication with the Model</li>
+								<li>Controller can also decorate the data with display data</li>
+								<li>Templates talk to the Controller to get the data</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+				<section>
+					<section>
+						<h2>Router</h2>
+					</section>
+					<section>
+						<h3>Router</h3>
+						<p>The Router maps the browser's URL to Application State</p>
+
+						<aside class="notes">
+							<ul>
+								<li>Runs code when URLs are visited</li>
+								<li>Router is the glue to put your application together</li>
+								<li>Loads data and assigns it to a controller</li>
+								<li>controllers don't load their own data usually</li>
+							</ul>
+						</aside>
+					</section>
+					<section>
+<pre><code class="javascript">App.Router.map(function() {
+  this.route("about", { path: "/about" });
+  this.route("favorites", { path: "/favs" });
+});</code></pre>
+						<aside class="notes">
+							Familiar to Rails Developers
+						</aside>
+					</section>
+					<section>
+<pre><code class="javascript">App.AboutRoute = Ember.Route.extend({
+  setupController: function(controller) {
+    // Set the IndexController's `title`
+    controller.set("title", "My App");
+  }
+});</code></pre>
+					</section>
+					<section>
+						<h3>Naming Conventions</h3>
+						<img src="img/naming-conventions.png" alt="">
+						<aside class="notes">
+							automatically figures out the names of routes and controllers based on the name you pass to this.route
+						</aside>
+					</section>
+				</section>
+
+<!----- Section ------>
+
+
+			<section>
+				<section>
+					<h2>Is it ready for prime time?</h2>
+				</section>
+				<section>
+					<h3>Ember v1.0 RC1</h3>
+					<aside class="notes">
+						<ul>
+							<li>Stable API</li>
+							<li>There were large breaking changes leading up to v1.0</li>
+							<li>Most version upgrades deleted code</li>
+							<li>You can see API improved with real world usage</li>
+							<li>Docs have improved a load in past couple of months - still improving</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Ember Data...not so much!</h3>
+					<ul>
+						<li>Not released yet - have to build from GitHub</li>
+						<li>It is being used in the wild by lots of people</li>
+						<li>API is not stable - will change</li>
+						<li>Now Ember is in RC1, focus shifted to stabilizing Ember Data</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Growth - jobs</h3>
+					<img src="img/ember-jobs.png">
+
+					<aside class="notes">
+						<ul>
+							<li>Illustrates growth of Ember</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+
+				<section>
+					<section>
+						<h2>Who's using Ember?</h2>
+					</section>
+					<section>
+						<ul>
+							<li><a href="http://squareup.com">Square</a></li>
+							<li><a href="http://groupon.com">Groupon</a></li>
+							<li><a href="http://travis-ci.org">TravisCI</a></li>
+							<li><a href="http://yapp.us">Yapp</a></li>
+							<li><a href="http://livingsocial.com">LivingSocial</a></li>
+							<li><a href="http://discourse.org">Discourse</a></li>
+							<li><a href="http://addepar.com">Addepar</a></li>
+							<li><a href="http://zendesk.com">Zendesk</a></li>
+							<li><a href="http://panic.com">Panic</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>And...Toushay</h3>
+						<p>
+							Toushay has bet on the Web...
+						</p>
+
+						<p class="fragment fade-in">
+							...and on Ember
+						</p>
+
+						<aside class="notes">
+							<ul>
+							 	<li>Develop web based iPad applications using Ember</li>
+							 	<li>Ember also powers our web admin tool</li>
+							 </ul>
+						</aside>
+					</section>
+					<section>
+						<h2>We're Hiring!</h2>
+						<p><a href="http://toushay.com">Come work with Ember...</a></p>
+						<aside class="notes">
+							Lucky enough to work a a cool startup called Toushay who:
+							<ul>
+							 	<li>sponsor cool events like this </li>
+							 	<li>give us the opportunity to work cool projects using new technologies like Ember</li>
+							 </ul>
+						</aside>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Ember in Ottawa?</h2>
+					</section>
+					<section>
+						<p>A new meetup group just for Ember</p>
+						<br/>
+						<p>Sign up at <a href="http://www.meetup.com/Ember-js-Ottawa/">www.meetup.com/Ember-js-Ottawa</a></p>
+						<br/>
+						<p>Follow <a href="http://www.twitter.com/EmberOttawa">@EmberOttawa</a></p>
+						<aside class="notes">
+							<ul>
+								<li>Was at EmberCamp a few weeks ago - was great discuss how people are using ember </li>
+								<li>Create a community & user group for ember in Ottawa</li>
+								<li>OttawaJS sub-group - if it goes well maybe we can have a few more sub-groups</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Ember Resources</h2>
+					</section>
+					<section>
+						<ul>
+							<li>Official website -
+								<a href="http://emberjs.com">emberjs.com</a>
+								<ul>
+									<li><a href="http://emberjs.com/guides/">Guides</a></li>
+									<li><a href="http://emberjs.com/api">API Docs</a></li>
+									<li>Getting started guide (coming soon)</li>
+								</ul>
+							</li>
+							<li>GitHub <a href="https://github.com/emberjs">Source Code</a></li>
+							<li>Peepcode - <a href="https://peepcode.com/products/emberjs">Fire up Ember.js</a> ($)</li>
+							<li><a href="http://emberwatch.com/">emberwatch.com</a></li>
+							<li>Follow <a href="http://www.twitter.com/EmberWatch">@EmberWatch</a> & <a href="http://www.twitter.com/EmberTips">@EmberTips</a> </li>
+							<li>Discourse Forum - <a href="http://discuss.emberjs.com">discuss.emberjs.com</a></li>
+							<li>Stack Overflow - <a href="http://stackoverflow.com/questions/tagged/ember.js">ember.js tag</a></li>
+						</ul>
+						<aside class="notes">
+							Careful, a lot of outated articles out there
+						</aside>
+					</section>
+
+					<section>
+						<p><a href="http://owain.is/introducing-ember">owain.is/introducing-ember</a></p>
+						<aside class="notes">
+							Slides will be posted here soon
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<h1>Thank You</h1>
+					<br/>
+					<h3>Owain Williams</h3>
+					<p><a href="http://www.twitter.com/owz">@owz</a></p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				keyboard: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
 </html>
