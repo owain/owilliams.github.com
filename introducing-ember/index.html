@@ -38,7 +38,7 @@
 			<div class="slides">
 
 <!----- Section ------>
-				<section>
+				<section data-track="title">
 					<h1>Ember.js</h1>
 					<h3>An Introduction</h3>
 					<p>
@@ -55,19 +55,19 @@
 
 <!----- Section ------>
 				<section>
-					<section>
+					<section data-track="my-name">
 						<p>
 							<b>Owain Williams</b>
 						</p>
 					</section>
-					<section>
+					<section data-track="my-job">
 						<p>Front-End Engineer @ <a href="http://toushay.com">Toushay</a></p>
 					</section>
 				</section>
 
 <!----- Section ------>
 				<section>
-					<section>
+					<section data-track="what-is-ember">
 						<h2>What is this Ember?</h2>
 						<aside class="notes">
 							Will concentrate on concepts - not a full API guide
@@ -938,12 +938,12 @@ avril.get("fullName") // "Avril Lavigne"</code></pre>
 			Reveal.addEventListener( 'slidechanged', function( event ) {
 			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
 				try{
-					mixpanel.track('slidechanged to slide #' + event.currentSlide);
+					mixpanel.track('slidechanged to slide # ' + event.indexh + '/' + event.indexv);
 				}catch(e){
 					console.log('Error tracking', e);
 				}
 
-				_trackEvent('navigation', 'slidechanged', 'slide #', event.currentSlide);
+				_trackEvent('navigation', 'slidechanged', 'slide',  + event.indexh + '/' + event.indexv);
 			} );
 
 		</script>
