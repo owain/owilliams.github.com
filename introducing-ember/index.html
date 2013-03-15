@@ -939,7 +939,7 @@ avril.get("fullName") // "Avril Lavigne"</code></pre>
 			    // event.previousSlide, event.currentSlide, event.indexh, event.indexv
 				try{
 					mixpanel.track('slidechanged to slide #' + event.currentSlide);
-				}catch(){
+				}catch(e){
 					console.log('Error tracking', e);
 				}
 
